@@ -10,13 +10,15 @@ import (
 
 func main() {
 	file, err := os.Open("/usr/share/dict/words")
-	if err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		word := scanner.Text()
-		if isPalindrome(word) == true {
+		if isPalindrome(word) {
 			fmt.Printf("%s is a palindrome\n", word)
 		}
 	}
@@ -33,7 +35,7 @@ func isPalindrome(word string) bool {
 	beg = word[:cut]
 	beg = strings.ToLower(beg)
 
-	if wl % 2 == 0 {
+	if wl%2 == 0 {
 		end = word[cut:]
 	} else {
 		end = word[cut+1:]
